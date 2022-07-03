@@ -16,7 +16,7 @@
 - [Struktura Drzewiasta Projektu](#struktura-drzewiasta-projektu)
 - [Technologie i Biblioteki](#technologie-i-biblioteki)
 - [Instrukcja Uruchomienia Projektu](#instrukcja-uruchomienia-projektu)
-  - [Instalacja potrzebnych bibliotek:](#instalacja-potrzebnych-bibliotek)
+  - [Instalacja Potrzebnych Bibliotek:](#instalacja-potrzebnych-bibliotek)
   - [Utworzenie Pliku Inputu](#utworzenie-pliku-inputu)
   - [Uruchomienie Projektu](#uruchomienie-projektu)
   - [Output](#output)
@@ -1235,7 +1235,7 @@ W projekcie zostały użyte poniższe technologie:
 
 ## Instrukcja Uruchomienia Projektu
 
-### Instalacja potrzebnych bibliotek:
+### Instalacja Potrzebnych Bibliotek:
 
 - ```bash
     pip install six
@@ -1268,7 +1268,7 @@ Uruchamiamy projekt poprzez wpisanie komendy w terminal, znajdując się w katal
 
 ### Output
 
-Skonwertowany kod będzie wypisany w terminalu lub w pliku docelowym `outputu` - w zależności od wyboru z powyższych komend.
+Skonwertowany kod będzie wypisany w terminalu lub w pliku docelowym `outputu` - w zależności od wyboru powyższych komend.
 
 ## Przykładowe Testy
 
