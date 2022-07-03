@@ -7,7 +7,7 @@ from six import string_types
 
 def flatten(lst):
     for element in lst:
-        if isinstance(element, collections.Iterable) and not isinstance(element, string_types):
+        if isinstance(element, collections.abc.Iterable) and not isinstance(element, string_types):
             for sub in flatten(element):
                 yield sub
         else:
