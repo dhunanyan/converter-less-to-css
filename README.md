@@ -4,7 +4,7 @@
 
 - [Spis treści](#spis-treści)
 - [Informacje o projekcie <a name="doc_scube"></a>](#informacje-o-projekcie-)
-- [Spis tokenów <a name="description"></a>](#spis-tokenów-)
+- [<a name="description">Spis tokenów</a>](#spis-tokenów)
   - [Separatory](#separatory)
   - [URL-e](#url-e)
   - [Opcje Import-u](#opcje-import-u)
@@ -23,18 +23,6 @@
   - [Wieloliniowy String](#wieloliniowy-string)
   - [Pusta Przestrzeń](#pusta-przestrzeń)
   - [Nulle I Tym Podobne](#nulle-i-tym-podobne)
-
-  1. [Graficzny interfejs użytkownika](#gui)
-
-  2. [Terminal](#cl)
-
-- [Testy](#tests)
-
-  1. [Prawidłowy kod](#pk)
-
-  2. [Nieprawidłowy kod](#nk)
-
-- [Możliwości rozbudowy programu](#extend)
 
 ## Informacje o projekcie <a name="doc_scube"></a>
 
@@ -55,7 +43,7 @@ Narzędzie ANTLR zostało użyte do realizacji projektu. Lekser oraz generator p
 Jak ma wyglądać schemat projektu:<br>
 `Lexer -> Parser -> Listener`
 
-## Spis tokenów <a name="description"></a>
+## <a name="description">Spis tokenów</a>
 
 ### Separatory
 
