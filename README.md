@@ -1225,11 +1225,8 @@ W projekcie zostały użyte poniższe technologie:
   - ```bash
       pip install six
     ```
-    - ```bash
+  - ```bash
       pip install ply
-      ```
-    ```
-
     ```
 - Tworzenie pliku .less w głównym katalogu zawierającą kod LESS, który będzie skonwertowany na CSS
   - `np: example.less`
