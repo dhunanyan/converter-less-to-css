@@ -16,6 +16,10 @@
 - [Struktura Drzewiasta Projektu](#struktura-drzewiasta-projektu)
 - [Technologie i Biblioteki](#technologie-i-biblioteki)
 - [Instrukcja Uruchomienia Projektu](#instrukcja-uruchomienia-projektu)
+  - [Instalacja potrzebnych bibliotek:](#instalacja-potrzebnych-bibliotek)
+  - [Utworzenie Pliku Inputu](#utworzenie-pliku-inputu)
+  - [Uruchomienie Projektu](#uruchomienie-projektu)
+  - [Output](#output)
 - [Przykładowe Testy](#przykładowe-testy)
   - [Input №1](#input-1)
   - [Input №2](#input-2)
@@ -1231,30 +1235,40 @@ W projekcie zostały użyte poniższe technologie:
 
 ## Instrukcja Uruchomienia Projektu
 
-- Instalacja potrzebnych bibliotek:
-  - ```bash
-      pip install six
-    ```
-  - ```bash
-      pip install ply
-    ```
-- Utworzenie pliku z rzoszerzeniem `.less` w głównym katalogu zawierający `input` w języku `LESS`
-  - `np: example.less`
-- Uruchomienie projektu poprzez wpisanie komendy w terminal, znajdując się w katalogu głównym:
+### Instalacja potrzebnych bibliotek:
 
-  - Jeżeli chcemy, aby `output` był wypisany to trzeba uruchomić projekt za pomocą poniższej komendy (gdzie `example.less` jest to wyżej wspomniany plik zawierający `input` w `LESS`):
+- ```bash
+    pip install six
+  ```
+- ```bash
+    pip install ply
+  ```
 
-  ```bash
+### Utworzenie Pliku Inputu
+
+Wymagany jest plik inputu z rzoszerzeniem `.less` w głównym katalogu zawierający `input` w języku `LESS`
+
+- `np: example.less`
+
+### Uruchomienie Projektu
+
+Uruchamiamy projekt poprzez wpisanie komendy w terminal, znajdując się w katalogu głównym:
+
+- Jeżeli chcemy, aby `output` był wypisany to trzeba uruchomić projekt za pomocą poniższej komendy (gdzie `example.less` jest to wyżej wspomniany plik zawierający `input` w `LESS`):
+
+```bash
    python main.py example.less
-  ```
+```
 
-  - Jeżeli natomiast chcemy, aby `output` był wypisany w osobnym pliku, to trzeba uruchomić projekt za pomocą poniższej komendy (gdzie gdzie `example.less` jest to wyżej wspomniany plik zawierający `input` w `LESS`, natomiast `'./your_path.css'` jest scieżką docelową do `outputu` w `CSS`):
+- Jeżeli natomiast chcemy, aby `output` był wypisany w osobnym pliku, to trzeba uruchomić projekt za pomocą poniższej komendy (gdzie gdzie `example.less` jest to wyżej wspomniany plik zawierający `input` w `LESS`, natomiast `'./your_path.css'` jest scieżką docelową do `outputu` w `CSS`):
 
-  ```bash
+```bash
    python main.py example.less './your_path.css'
-  ```
+```
 
-- Skonwertowany kod będzie wypisany w terminalu
+### Output
+
+Skonwertowany kod będzie wypisany w terminalu lub w pliku docelowym `outputu` - w zależności od wyboru z powyższych komend.
 
 ## Przykładowe Testy
 
