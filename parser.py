@@ -1,17 +1,3 @@
-# -*- coding: utf8 -*-
-"""
-.. module:: lesscpy.lessc.parser
-    :synopsis: Lesscss parser.
-
-    http://www.dabeaz.com/ply/ply.html
-    http://www.w3.org/TR/CSS21/grammar.html#scanner
-    http://lesscss.org/#docs
-
-    Copyright (c)
-    See LICENSE for details.
-.. moduleauthor:: Johann T. Mariusson <jtm@robot.is>
-"""
-
 from __future__ import print_function
 
 import os
