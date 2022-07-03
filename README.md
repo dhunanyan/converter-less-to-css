@@ -26,20 +26,26 @@
 
 ## Informacje o projekcie
 
-- Maciej Ciepał `maciejciepal@student.agh.edu.pl`
-- Davit Hunanyan `hunanyan@student.agh.edu.pl`
+- Autorzy
 
-Główne cele i założenia projektu: <br>
+  - Maciej Ciepał `maciejciepal@student.agh.edu.pl`
+  - Davit Hunanyan `hunanyan@student.agh.edu.pl`
 
-- Translacja kodu z Less.js do CSS
+- Główne cele i założenia projektu:
 
-Język implementacji: Python <br>
+  - Translacja kodu z Less.js do CSS
 
-Generator parserów: ANTLR4 <br><br>
-Narzędzie ANTLR zostało użyte do realizacji projektu. Lekser oraz generator parsera wchodzą w jego skład.
+- Język implementacji:
 
-Jak ma wyglądać schemat projektu:<br>
-`Lexer -> Parser -> Listener`
+  - Python
+
+- Generator parserów:
+
+  - ANTLR4
+  - Lekser oraz generator parsera wchodzą w jego skład.
+
+- Schemat projektu:
+  `Lexer -> Parser -> Listener`
 
 ## Spis tokenów
 
