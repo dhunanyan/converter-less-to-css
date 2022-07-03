@@ -20,6 +20,7 @@
   - [Input №1](#input-1)
   - [Input №2](#input-2)
   - [Input №3](#input-3)
+  - [Input №4](#input-4)
 
 ## Informacje o projekcie
 
@@ -1347,5 +1348,36 @@ python main.py samples/input_3.less
   .widget {
     color: #ffffff;
     background: #428bca;
+  }
+  ```
+
+### Input №4
+
+- Zawartość pliku `samples/input_4.less`:
+
+  ```less
+  @header-font: Arial;
+  h1 {
+    font-family: @header-font;
+  }
+  .concrete {
+    font-family: @header-font;
+  }
+  ```
+
+- Uruchomienie konwertera podając `input` zawarty w `samples/input_4.less`:
+
+```bash
+python main.py samples/input_4.less
+```
+
+- Oczekiwany `output`:
+
+  ```css
+  h1 {
+    font-family: Arial;
+  }
+  .concrete {
+    font-family: Arial;
   }
   ```
