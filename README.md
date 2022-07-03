@@ -753,9 +753,11 @@ class LessParser(object):
         """
         p[0] = p[1] if isinstance(p[1], list) else [p[1]]
 
-#
-#    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#
+```
+
+---
+
+```py
 
     def p_variable_decl(self, p):
         """ variable_decl            : variable t_colon style_list t_semicolon
