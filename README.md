@@ -27,8 +27,8 @@
   - [Rejestrowanie Errorów](#rejestrowanie-errorów)
   - [Printowanie Errorów](#printowanie-errorów)
 - [Klasa Parsera](#klasa-parsera)
-- [Struktura Drzewiasta Projektu:](#struktura-drzewiasta-projektu)
-- [Technologie:](#technologie)
+- [Struktura Drzewiasta Projektu](#struktura-drzewiasta-projektu)
+- [Technologie](#technologie)
 
 ## Informacje o projekcie
 
@@ -1390,7 +1390,7 @@ class LessParser(object):
 
 ```
 
-## Struktura Drzewiasta Projektu:
+## Struktura Drzewiasta Projektu
 
     .
     ├── main
@@ -1411,7 +1411,7 @@ class LessParser(object):
     ├── lexer.py
     └── parser.py
 
-## Technologie:
+## Technologie
 
 W projekcie zostały użyte poniższe technologie:
 
