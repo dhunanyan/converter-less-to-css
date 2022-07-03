@@ -5,24 +5,10 @@
 - [Spis treści](#spis-treści)
 - [Informacje o projekcie](#informacje-o-projekcie)
 - [Spis tokenów](#spis-tokenów)
-  - [Separatory](#separatory)
-  - [URL-e](#url-e)
-  - [Opcje Import-u](#opcje-import-u)
-  - [Misc Funkcje](#misc-funkcje)
-  - [String-i](#string-i)
-  - [Listy](#listy)
-  - [Matematyczne Funkcje](#matematyczne-funkcje)
-  - [Typy](#typy)
-  - [Funkcje Kolorów](#funkcje-kolorów)
-  - [Kanały Kolorów](#kanały-kolorów)
-  - [Operacje na Kolorach](#operacje-na-kolorach)
-  - [Blendowanie Kolorów](#blendowanie-kolorów)
-  - [Łączniki](#łączniki)
-  - [Literały Stringów](#literały-stringów)
-  - [Linia Stringu](#linia-stringu)
-  - [Wieloliniowy String](#wieloliniowy-string)
-  - [Pusta Przestrzeń](#pusta-przestrzeń)
-  - [Null-e I Tym Podobne](#null-e-i-tym-podobne)
+  - [Regularne Tokeny](#regularne-tokeny)
+  - [Istotne Iterały](#istotne-iterały)
+  - [Istotne Tokeny](#istotne-tokeny)
+  - [Łączenie Tokenów](#łączenie-tokenów)
 - [Klasa Errorów](#klasa-errorów)
   - [Rejestrowanie Errorów](#rejestrowanie-errorów)
   - [Printowanie Errorów](#printowanie-errorów)
@@ -56,249 +42,41 @@
 
 ## Spis tokenów
 
-### Separatory
+### Regularne Tokeny
 
 ```py
-t_LPAREN = r'\('
-t_RPAREN = r'\)'
-t_BlockStart = r'\{'
-t_BlockEnd = r'\}'
-t_LBRACK = r'\['
-t_RBRACK = r'\]'
-t_GT = r'>'
-t_LT = r'<'
-t_TIL = r'~'
-t_COLOR = r':'
-t_SEMI = r';'
-t_COMMA = r','
-t_DOT = r'\.'
-t_DOLLAR = r'\$'
-t_AT = r'@'
-t_PARENTREF = r'&'
-t_HASH = r'#'
-t_COLONCOLON = r'::'
-t_PLUS = r'\+'
-t_TIMES = r'\*'
-t_DIV = r'\/'
-t_MINUS = r'-'
-t_PERC = r'%'
-t_EQEQ = r'=='
-t_GTEQ = r'>='
-t_LTEQ = r'<='
-t_NOTEQ = r'!='
-t_EQ = r'='
-t_PIPE_EQ = r'\|='
-t_TILD_EQ = r'~='
+regular_tokens = [
+    'css_comment', 'css_string', 'css_important','css_vendor_hack',
+    'css_uri', 'css_ms_filter', 'css_keyframe_selector', 'css_media_feature',
+    'less_comment', 'less_open_format', 'less_when', 'less_and', 'less_not',
+    't_ws', 't_popen', 't_pclose', 't_semicolon', 't_tilde', 't_colon',
+    't_comma', 't_eopen', 't_eclose', 't_isopen', 't_isclose', 't_bopen', 't_bclose'
+]
 ```
 
-### URL-e
+### Istotne Iterały
 
 ```py
-t_URL = r'url'
-t_IMPORT = r'@import'
-t_MEDIA = r'@media'
-t_EXTEND = r':extend'
-t_IMPORTANT = r'!important'
-t_ARGUMENTS = r'@arguments'
-t_REST = r'@rest'
+significant_ws_literals = ['&']
 ```
 
-### Opcje Import-u
+### Istotne Tokeny
 
 ```py
-t_REFERENCE = r'reference'
-t_INLINE = r'inline'
-t_LESS = r'less'
-t_CSS = r'css'
-t_ONCE = r'once'
-t_MULTIPLE = r'multiple'
-t_OPTIONAL = r'optional'
+significant_ws_tokens = [
+    'css_class', 'css_id', 'css_dom', 'css_property', 'css_vendor_property',
+    'css_user_property', 'css_ident', 'css_number', 'css_color', 'css_media_type',
+    'css_filter', 'less_variable', 't_and', 't_not', 't_only'
+]
 ```
 
-### Misc Funkcje
+### Łączenie Tokenów
 
 ```py
-t_COLOR = r'color'
-t_IMAGE_SIZE = r'image-size'
-t_IMAGE_WIDTH = r'image-width'
-t_IMAGE_HEIGHT = r'image-height'
-t_CONVERT = r'convert'
-t_DATA_URI = r'data_uri'
-t_DEFAULT = r'default'
-t_UNIT = r'unit'
-t_GET_UNIT = r'get-unit'
-t_SVG_GRADIENT = r'svg-gradient'
-```
+literals = '<>=%!/*-+'.join(significant_ws_literals)
 
-### String-i
-
-```py
-t_ESCAPE = r'escape'
-t_E = r'e'
-t_FORMAT = r'%'
-t_REPLACE = r'replace'
-```
-
-### Listy
-
-```py
-t_LENGTH = r'length'
-t_EXTRACT = r'extract'
-t_RANGE = r'range'
-t_EACH = r'each'
-```
-
-### Matematyczne Funkcje
-
-```py
-t_CEIL = r'ceil'
-t_FLOOR = r'floor'
-t_PERCENTAGE = r'percentage'
-t_ROUND = r'round'
-t_SRQT = r'sqrt'
-t_ABS = r'abs'
-t_SIN = r'sin'
-t_ASIN = r'asin'
-t_COS = r'cos'
-t_ACOS = r'acos'
-t_TAN = r'tan'
-t_ATAN = r'atan'
-t_PI = r'pi'
-t_POW = r'pow'
-t_MOD = r'mod'
-t_MIN = r'min'
-t_MAX = r'max'
-```
-
-### Typy
-
-```py
-t_ISNUMBER = r'isnumber'
-t_ISSTRING = r'isstring'
-t_ISCOLOR = r'iscolor'
-t_ISKEYWORD = r'iskeyword'
-t_ISURL = r'isurl'
-t_ISPIXEL = r'ispixel'
-t_ISEM = r'isem'
-t_ISPERCENTAGE = r'ispercentage'
-t_ISUNIT = r'isunit'
-t_ISRULESET = r'isruleset'
-t_ISDEFINED = r'isdefined'
-```
-
-### Funkcje Kolorów
-
-```py
-t_RGB = r'rgb'
-t_RGBA = r'rgba'
-t_ARGB = r'argb'
-t_HSL = r'hsl'
-t_HSLA = r'hsla'
-t_HSV = r'hsv'
-t_HSVA = r'hsva'
-```
-
-### Kanały Kolorów
-
-```py
-t_HUE = r'hue'
-t_SATURATION = r'saturation'
-t_LIGHTNESS = r'lightness'
-t_HSVHUE = r'hsvhue'
-t_HSVSATURATION = r'hsvsaturation'
-t_HSVVALUE = r'hsvvalue'
-t_RED = r'red'
-t_GREEN = r'green'
-t_BLUE = r'blue'
-t_ALPHA = r'alpha'
-t_LUMA = r'luma'
-t_LUMINANCE = r'luminance'
-```
-
-### Operacje na Kolorach
-
-```py
-t_SATURATE = r'saturate'
-t_DESATURATE = r'desaturate'
-t_LIGHTEN = r'lighten'
-t_DARKEN = r'darken'
-t_FADEIN = r'fadein'
-t_FADEOUT = r'fadeout'
-t_FADE = r'fade'
-t_SPIN = r'spin'
-t_MIX = r'mix'
-t_TINT = r'tint'
-t_SHADE = r'shade'
-t_GREYSCALE = r'greyscale'
-t_CONTRAST = r'contrast'
-```
-
-### Blendowanie Kolorów
-
-```py
-t_MULTIPLY = r'multiply'
-t_SCREEN = r'screen'
-t_OVERLAY = r'overlay'
-t_SOFTLIGHT = r'softlight'
-t_HARDLIGHT = r'hardlight'
-t_DIFFERENCE = r'difference'
-t_EXCLUSION = r'exclusion'
-t_AVERAGE = r'average'
-t_NEGATION = r'negation'
-```
-
-### Łączniki
-
-```py
-t_WHEN = r'when'
-t_NOT = r'not'
-t_AND = r'and'
-```
-
-### Literały Stringów
-
-```py
-t_STRING = r''
-
-def t_NUMBER(t):
-  r'[+-]?([0-9]*[.])?([0-9])+'
-  t.value = float(t.value)
-  return t
-
-t_Color = r'^#(([0-9]|[a-f]|[A-F]){3}|([0-9]|[a-f]|[A-F]){5}|([0-9]|[a-f]|[A-F]){6})$'
-```
-
-### Linia Stringu
-
-```py
-def t_SL_COMMENT(t):
-  r'\/\/.*?'
-  pass
-```
-
-### Wieloliniowy String
-
-```py
-def t_COMMENT(t):
-  r'\/\*((\n\*)*(.*?))*\*\/'
-  pass
-```
-
-### Pusta Przestrzeń
-
-```py
-def t_WS(t):
-  r' |\t|\n|\r|\r\n'
-  pass
-```
-
-### Null-e I Tym Podobne
-
-```py
-t_NULL_ = r'null'
-t_IN = r'in'
-t_Unit = r'%|px|cm|mm|in|pt|pc|em|ex|deg|rad|grad|ms|s|hz|khz'
-t_Ellipsis = r'...'
+tokens = regular_tokens + significant_ws_tokens + list(set(reserved.tokens.values()))
+significant_ws = significant_ws_tokens + significant_ws_literals + list(set(reserved.tokens.values()))
 ```
 
 ## Klasa Errorów
