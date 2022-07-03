@@ -1222,16 +1222,18 @@ W projekcie zostały użyte poniższe technologie:
 ## Instrukcja Uruchomienia Projektu
 
 - Instalacja potrzebnych bibliotek:
-  ```bash
+- ```bash
       pip install six
   ```
-  ```bash
+- ```bash
       pip install ply
   ```
 - Tworzenie pliku .less w głównym katalogu zawierającą kod LESS, który będzie skonwertowany na CSS
   - `np: example.less`
 - W głownym katalogu, w terminalu wywołanie komendy, gdzie `example.less` to wyżej wspomniany przez użytkonwika stworzony plik:
+
   ```bash
     python main.py example.less
   ```
+
 - Skonwertowany kod będzie wypisany w terminalu
