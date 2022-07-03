@@ -158,9 +158,6 @@ def run():
     aparse.add_argument('output', nargs='?', help="output file path")
     args = aparse.parse_args()
     try:
-        #
-        #    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        #
         if args.lex_only:
             lex = lexer.LessLexer()
             ll = lex.file(args.target)
@@ -217,6 +214,7 @@ def run():
             if not args.no_css and p:
                 out = f.format(p)
                 if args.output:
+                    print(os.path.exists(os.path.dirname(args.output)))
                     if not args.dont_create_dirs and not os.path.exists(
                             os.path.dirname(args.output)):
                         try:

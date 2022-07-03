@@ -172,7 +172,6 @@ class LessParser(object):
                                  | css_import t_ws fcall t_semicolon
                                  | css_import t_ws fcall media_query_list t_semicolon
         """
-        #import pdb; pdb.set_trace()
         if self.importlvl > 8:
             raise ImportError(
                 'Recrusive import level too deep > 8 (circular import ?)')
@@ -225,7 +224,6 @@ class LessParser(object):
         if block:
             p[0] = block.copy_inner(self.scope)
         else:
-            # fallback to mixin. Allow calls to mixins without parens
             p[0] = Deferred(p[1], None, p.lineno(2))
 
     def p_block_open(self, p):
