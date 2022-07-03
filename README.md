@@ -27,6 +27,7 @@
   - [Rejestrowanie Errorów](#rejestrowanie-errorów)
   - [Printowanie Errorów](#printowanie-errorów)
 - [Klasa Parsera](#klasa-parsera)
+- [Technologie:](#technologie)
 
 ## Informacje o projekcie
 
@@ -1387,3 +1388,10 @@ class LessParser(object):
         self.register.register("%s: line: %d: %s\n" % (t, line, e))
 
 ```
+
+## Technologie:
+
+W projekcie zostały użyte poniższe technologie:
+
+- Python 3.9
+- ANTLR 4.7.2
