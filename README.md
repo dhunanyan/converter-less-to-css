@@ -42,7 +42,7 @@ Jak ma wyglądać schemat projektu:<br>
 
 ### SEPARATORS
 
-```
+```css
 t_LPAREN = r'\('
 t_RPAREN = r'\)'
 t_BlockStart = r'\{'
@@ -73,4 +73,4 @@ t_NOTEQ = r'!='
 t_EQ = r'='
 t_PIPE_EQ = r'\|='
 t_TILD_EQ = r'~='
-```css
+```
