@@ -1,0 +1,19 @@
+//INPUT
+
+.header {
+  .menu {
+    border-radius: 5px;
+    .no-borderradius & {
+      background-image: url("images/button-background.png");
+    }
+  }
+}
+
+// EXPECTED OUTPUT
+
+// .header .menu {
+//   border-radius: 5px;
+// }
+// .no-borderradius .header .menu {
+//   background-image: url("images/button-background.png");
+// }

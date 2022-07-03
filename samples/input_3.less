@@ -1,0 +1,32 @@
+//INPUT
+
+// Variables
+@link-color: #428bca; // sea blue
+@link-color-hover: @link-color;
+
+// Usage
+a,
+.link {
+  color: @link-color;
+}
+a:hover {
+  color: @link-color-hover;
+}
+.widget {
+  color: #fff;
+  background: @link-color;
+}
+
+// EXPECTED OUTPUT
+
+// a,
+// .link {
+//   color: #428bca;
+// }
+// a:hover {
+//   color: #3071a9;
+// }
+// .widget {
+//   color: #ffffff;
+//   background: #428bca;
+// }

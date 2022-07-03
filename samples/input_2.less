@@ -1,0 +1,14 @@
+//INPUT
+
+.lazy-eval {
+  width: @var;
+}
+
+@var: @a;
+@a: 9%;
+
+// EXPECTED OUTPUT
+
+// .lazy-eval {
+//   width: 9%;
+// }

@@ -16,6 +16,8 @@
 - [Struktura Drzewiasta Projektu](#struktura-drzewiasta-projektu)
 - [Technologie i Biblioteki](#technologie-i-biblioteki)
 - [Instrukcja Uruchomienia Projektu](#instrukcja-uruchomienia-projektu)
+- [Przykładowe Testy](#przykładowe-testy)
+  - [Input №1](#input-1)
 
 ## Informacje o projekcie
 
@@ -1237,3 +1239,36 @@ W projekcie zostały użyte poniższe technologie:
     ```
 
 - Skonwertowany kod będzie wypisany w terminalu
+
+## Przykładowe Testy
+
+W katalogu `samples` są znajdują się przykładowe pliki które mają pewien `input` oraz `oczekiwany output`. Zalecane jest prztestować manualnie pliki zawarte w tym katalogu, aby upewnić się, że projekt jest prawidłowy skonfigurowany.
+
+### Input №1
+
+- Zawartość pliku `input_1.less`:
+
+  ```less
+  // Variables
+  @my-selector: banner;
+
+  // Usage
+  .@{my-selector} {
+    font-weight: bold;
+    line-height: 40px;
+    margin: 0 auto;
+  }
+  ```
+
+- ```bash
+  python main.py samples/input_1.less
+  ```
+
+- Oczekiwany `output`:
+  ```css
+  .banner {
+    font-weight: bold;
+    line-height: 40px;
+    margin: 0 auto;
+  }
+  ```
