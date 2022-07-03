@@ -1,340 +1,34 @@
-<h1 align="center">  Kompilator Less.js do CSS </h1>
+from __future__ import print_function
 
-## Spis treści
+import os
+import tempfile
+import sys
+import ply.yacc
+from six import string_types
 
-- [Spis treści](#spis-treści)
-- [Informacje o projekcie](#informacje-o-projekcie)
-- [Spis tokenów](#spis-tokenów)
-  - [Separatory](#separatory)
-  - [URL-e](#url-e)
-  - [Opcje Import-u](#opcje-import-u)
-  - [Misc Funkcje](#misc-funkcje)
-  - [String-i](#string-i)
-  - [Listy](#listy)
-  - [Matematyczne Funkcje](#matematyczne-funkcje)
-  - [Typy](#typy)
-  - [Funkcje Kolorów](#funkcje-kolorów)
-  - [Kanały Kolorów](#kanały-kolorów)
-  - [Operacje na Kolorach](#operacje-na-kolorach)
-  - [Blendowanie Kolorów](#blendowanie-kolorów)
-  - [Łączniki](#łączniki)
-  - [Literały Stringów](#literały-stringów)
-  - [Linia Stringu](#linia-stringu)
-  - [Wieloliniowy String](#wieloliniowy-string)
-  - [Pusta Przestrzeń](#pusta-przestrzeń)
-  - [Null-e I Tym Podobne](#null-e-i-tym-podobne)
-- [Klasa Errorów](#klasa-errorów)
-  - [Rejestrowanie Errorów](#rejestrowanie-errorów)
-  - [Printowanie Errorów](#printowanie-errorów)
-- [Klasa Parsera](#klasa-parsera)
-- [Struktura Drzewiasta Projektu](#struktura-drzewiasta-projektu)
-- [Technologie](#technologie)
+from . import lexer
+from . import utilities
+from .scope import Scope
+from .color import Color
+from exceptions import CompilationError
+from lib import Block, Call, Deferred, Expression, Identifier, Mixin, NegatedExpression, Property, Statement, Variable, Import, KeyframeSelector
 
-## Informacje o projekcie
 
-- Autorzy:
-
-  - Maciej Ciepał `maciejciepal@student.agh.edu.pl`
-  - Davit Hunanyan `hunanyan@student.agh.edu.pl`
-
-- Główne cele i założenia projektu:
-
-  - Translacja kodu z Less.js do CSS
-
-- Język implementacji:
-
-  - Python
-
-- Generator parserów:
-
-  - ANTLR4
-  - Lekser oraz generator parsera wchodzą w jego skład.
-
-- Schemat projektu:
-  `Lexer -> Parser -> Listener`
-
-## Spis tokenów
-
-### Separatory
-
-```py
-t_LPAREN = r'\('
-t_RPAREN = r'\)'
-t_BlockStart = r'\{'
-t_BlockEnd = r'\}'
-t_LBRACK = r'\['
-t_RBRACK = r'\]'
-t_GT = r'>'
-t_LT = r'<'
-t_TIL = r'~'
-t_COLOR = r':'
-t_SEMI = r';'
-t_COMMA = r','
-t_DOT = r'\.'
-t_DOLLAR = r'\$'
-t_AT = r'@'
-t_PARENTREF = r'&'
-t_HASH = r'#'
-t_COLONCOLON = r'::'
-t_PLUS = r'\+'
-t_TIMES = r'\*'
-t_DIV = r'\/'
-t_MINUS = r'-'
-t_PERC = r'%'
-t_EQEQ = r'=='
-t_GTEQ = r'>='
-t_LTEQ = r'<='
-t_NOTEQ = r'!='
-t_EQ = r'='
-t_PIPE_EQ = r'\|='
-t_TILD_EQ = r'~='
-```
-
-### URL-e
-
-```py
-t_URL = r'url'
-t_IMPORT = r'@import'
-t_MEDIA = r'@media'
-t_EXTEND = r':extend'
-t_IMPORTANT = r'!important'
-t_ARGUMENTS = r'@arguments'
-t_REST = r'@rest'
-```
-
-### Opcje Import-u
-
-```py
-t_REFERENCE = r'reference'
-t_INLINE = r'inline'
-t_LESS = r'less'
-t_CSS = r'css'
-t_ONCE = r'once'
-t_MULTIPLE = r'multiple'
-t_OPTIONAL = r'optional'
-```
-
-### Misc Funkcje
-
-```py
-t_COLOR = r'color'
-t_IMAGE_SIZE = r'image-size'
-t_IMAGE_WIDTH = r'image-width'
-t_IMAGE_HEIGHT = r'image-height'
-t_CONVERT = r'convert'
-t_DATA_URI = r'data_uri'
-t_DEFAULT = r'default'
-t_UNIT = r'unit'
-t_GET_UNIT = r'get-unit'
-t_SVG_GRADIENT = r'svg-gradient'
-```
-
-### String-i
-
-```py
-t_ESCAPE = r'escape'
-t_E = r'e'
-t_FORMAT = r'%'
-t_REPLACE = r'replace'
-```
-
-### Listy
-
-```py
-t_LENGTH = r'length'
-t_EXTRACT = r'extract'
-t_RANGE = r'range'
-t_EACH = r'each'
-```
-
-### Matematyczne Funkcje
-
-```py
-t_CEIL = r'ceil'
-t_FLOOR = r'floor'
-t_PERCENTAGE = r'percentage'
-t_ROUND = r'round'
-t_SRQT = r'sqrt'
-t_ABS = r'abs'
-t_SIN = r'sin'
-t_ASIN = r'asin'
-t_COS = r'cos'
-t_ACOS = r'acos'
-t_TAN = r'tan'
-t_ATAN = r'atan'
-t_PI = r'pi'
-t_POW = r'pow'
-t_MOD = r'mod'
-t_MIN = r'min'
-t_MAX = r'max'
-```
-
-### Typy
-
-```py
-t_ISNUMBER = r'isnumber'
-t_ISSTRING = r'isstring'
-t_ISCOLOR = r'iscolor'
-t_ISKEYWORD = r'iskeyword'
-t_ISURL = r'isurl'
-t_ISPIXEL = r'ispixel'
-t_ISEM = r'isem'
-t_ISPERCENTAGE = r'ispercentage'
-t_ISUNIT = r'isunit'
-t_ISRULESET = r'isruleset'
-t_ISDEFINED = r'isdefined'
-```
-
-### Funkcje Kolorów
-
-```py
-t_RGB = r'rgb'
-t_RGBA = r'rgba'
-t_ARGB = r'argb'
-t_HSL = r'hsl'
-t_HSLA = r'hsla'
-t_HSV = r'hsv'
-t_HSVA = r'hsva'
-```
-
-### Kanały Kolorów
-
-```py
-t_HUE = r'hue'
-t_SATURATION = r'saturation'
-t_LIGHTNESS = r'lightness'
-t_HSVHUE = r'hsvhue'
-t_HSVSATURATION = r'hsvsaturation'
-t_HSVVALUE = r'hsvvalue'
-t_RED = r'red'
-t_GREEN = r'green'
-t_BLUE = r'blue'
-t_ALPHA = r'alpha'
-t_LUMA = r'luma'
-t_LUMINANCE = r'luminance'
-```
-
-### Operacje na Kolorach
-
-```py
-t_SATURATE = r'saturate'
-t_DESATURATE = r'desaturate'
-t_LIGHTEN = r'lighten'
-t_DARKEN = r'darken'
-t_FADEIN = r'fadein'
-t_FADEOUT = r'fadeout'
-t_FADE = r'fade'
-t_SPIN = r'spin'
-t_MIX = r'mix'
-t_TINT = r'tint'
-t_SHADE = r'shade'
-t_GREYSCALE = r'greyscale'
-t_CONTRAST = r'contrast'
-```
-
-### Blendowanie Kolorów
-
-```py
-t_MULTIPLY = r'multiply'
-t_SCREEN = r'screen'
-t_OVERLAY = r'overlay'
-t_SOFTLIGHT = r'softlight'
-t_HARDLIGHT = r'hardlight'
-t_DIFFERENCE = r'difference'
-t_EXCLUSION = r'exclusion'
-t_AVERAGE = r'average'
-t_NEGATION = r'negation'
-```
-
-### Łączniki
-
-```py
-t_WHEN = r'when'
-t_NOT = r'not'
-t_AND = r'and'
-```
-
-### Literały Stringów
-
-```py
-t_STRING = r''
-
-def t_NUMBER(t):
-  r'[+-]?([0-9]*[.])?([0-9])+'
-  t.value = float(t.value)
-  return t
-
-t_Color = r'^#(([0-9]|[a-f]|[A-F]){3}|([0-9]|[a-f]|[A-F]){5}|([0-9]|[a-f]|[A-F]){6})$'
-```
-
-### Linia Stringu
-
-```py
-def t_SL_COMMENT(t):
-  r'\/\/.*?'
-  pass
-```
-
-### Wieloliniowy String
-
-```py
-def t_COMMENT(t):
-  r'\/\*((\n\*)*(.*?))*\*\/'
-  pass
-```
-
-### Pusta Przestrzeń
-
-```py
-def t_WS(t):
-  r' |\t|\n|\r|\r\n'
-  pass
-```
-
-### Null-e I Tym Podobne
-
-```py
-t_NULL_ = r'null'
-t_IN = r'in'
-t_Unit = r'%|px|cm|mm|in|pt|pc|em|ex|deg|rad|grad|ms|s|hz|khz'
-t_Ellipsis = r'...'
-```
-
-## Klasa Errorów
-
-### Rejestrowanie Errorów
-
-```py
 class ErrorRegister(object):
-    """
-
-    Raises CompilationError when an error occurs.
-
-    """
-
     def __init__(self):
         self.errors = []
 
     def register(self, error):
-        self.errors.append(error)  # we could store them or just raise here.
+        self.errors.append(error)
 
     def __close__(self):
         if self.errors:
             raise CompilationError("\n".join(self.errors))
 
     close = __close__
-```
 
-### Printowanie Errorów
 
-```py
 class PrintErrorRegister(object):
-    """
-
-    Colored error output to stderr.
-
-    """
-
     def __init__(self):
         self.has_errored = False
 
@@ -348,11 +42,7 @@ class PrintErrorRegister(object):
 
     close = __close__
 
-```
 
-## Klasa Parsera
-
-```py
 class LessParser(object):
     precedence = (
         ('left', '+', '-'),
@@ -369,20 +59,7 @@ class LessParser(object):
                  importlvl=0,
                  verbose=False,
                  fail_with_exc=False):
-        """ Parser object
 
-            Kwargs:
-                lex_optimize (bool): Optimize lexer
-                yacc_optimize (bool): Optimize parser
-                tabfile (str): Yacc tab filename
-                yacc_debug (bool): yacc debug mode
-                scope (Scope): Inherited scope
-                outputdir (str): Output (debugging)
-                importlvl (int): Import depth
-                verbose (bool): Verbose mode
-                fail_with_exc (bool): Throw exception on syntax error instead
-                                      of printing to stderr
-        """
         self.verbose = verbose
         self.importlvl = importlvl
         self.lex = lexer.LessLexer()
@@ -410,18 +87,11 @@ class LessParser(object):
             self.register = PrintErrorRegister()
 
     def parse(self, filename=None, file=None, debuglevel=0):
-        """ Parse file.
-        kwargs:
-            filename (str): File to parse
-            debuglevel (int): Parser debuglevel
-        """
         self.scope.push()
 
         if not file:
-            # We use a path.
             file = filename
         else:
-            # We use a stream and try to extract the name from the stream.
             if hasattr(file, 'name'):
                 if filename is not None:
                     raise AssertionError(
@@ -439,10 +109,6 @@ class LessParser(object):
         self.register.close()
 
     def post_parse(self):
-        """ Post parse cycle. nodejs version allows calls to mixins
-        not yet defined or known to the parser. We defer all calls
-        to mixins until after first cycle when all names are known.
-        """
         if self.result:
             out = []
             for pu in self.result:
@@ -450,18 +116,12 @@ class LessParser(object):
                     out.append(pu.parse(self.scope))
                 except SyntaxError as e:
                     self.handle_error(e, 0)
-            self.result = list(utility.flatten(out))
+            self.result = list(utilities.flatten(out))
 
     def scopemap(self):
         """ Output scopemap.
         """
-        utility.debug_print(self.result)
-
-```
-
----
-
-```py
+        utilities.debug_print(self.result)
 
     def p_tunit(self, p):
         """ tunit                    : unit_list
@@ -492,12 +152,6 @@ class LessParser(object):
         """
         p[0] = p[1]
 
-```
-
----
-
-```py
-
     def p_statement_aux(self, p):
         """ statement            : css_charset t_ws css_string t_semicolon
                                  | css_namespace t_ws css_string t_semicolon
@@ -523,16 +177,14 @@ class LessParser(object):
             raise ImportError(
                 'Recrusive import level too deep > 8 (circular import ?)')
         if isinstance(p[3], string_types):
-            ipath = utility.destring(p[3])
+            ipath = utilities.destring(p[3])
         elif isinstance(p[3], list):
             p[3] = Import(p[3], p.lineno(4)).parse(self.scope)
-            ipath = utility.destring(p[3])
+            ipath = utilities.destring(p[3])
         elif isinstance(p[3], Call):
-            # NOTE(saschpe): Always in the form of 'url("...");', so parse it
-            # and retrieve the inner css_string. This whole func is messy.
             p[3] = p[3].parse(
-                self.scope)  # Store it as string, Statement.fmt expects it.
-            ipath = utility.destring(p[3][4:-1])
+                self.scope)
+            ipath = utilities.destring(p[3][4:-1])
         fn, fe = os.path.splitext(ipath)
         if not fe or fe.lower() == '.less':
             try:
@@ -557,12 +209,6 @@ class LessParser(object):
             p[0] = Statement(list(p)[1:], p.lineno(1))
             p[0].parse(None)
         sys.stdout.flush()
-
-```
-
----
-
-```py
 
     def p_block(self, p):
         """ block_decl               : block_open declaration_list brace_close
@@ -608,12 +254,6 @@ class LessParser(object):
         """
         p[0] = KeyframeSelector([p[1]]).parse(self.scope)
 
-```
-
----
-
-```py
-
     def p_mixin(self, p):
         """ mixin_decl                : open_mixin declaration_list brace_close
         """
@@ -655,7 +295,7 @@ class LessParser(object):
         """ mixin_guard_cond          : less_not t_popen argument mixin_guard_cmp argument t_pclose
                                       | less_not t_popen argument t_pclose
         """
-        p[0] = utility.reverse_guard(list(p)[3:-1])
+        p[0] = utilities.reverse_guard(list(p)[3:-1])
 
     def p_mixin_guard_cond(self, p):
         """ mixin_guard_cond          : t_popen argument mixin_guard_cmp argument t_pclose
@@ -728,12 +368,6 @@ class LessParser(object):
         """
         p[0] = [p[1]]
 
-```
-
----
-
-```py
-
     def p_declaration_list(self, p):
         """ declaration_list           : declaration_list declaration
                                        | declaration
@@ -753,23 +387,11 @@ class LessParser(object):
         """
         p[0] = p[1] if isinstance(p[1], list) else [p[1]]
 
-```
-
----
-
-```py
-
     def p_variable_decl(self, p):
         """ variable_decl            : variable t_colon style_list t_semicolon
         """
         p[0] = Variable(list(p)[1:-1], p.lineno(4))
         p[0].parse(self.scope)
-
-```
-
----
-
-```py
 
     def p_property_decl(self, p):
         """ property_decl           : prop_open style_list t_semicolon
@@ -797,12 +419,6 @@ class LessParser(object):
         """
         p[0] = (p[1][0], '')
 
-```
-
----
-
-```py
-
     def p_style_list_aux(self, p):
         """ style_list              : style_list style
                                     | style_list t_comma style
@@ -825,12 +441,6 @@ class LessParser(object):
                                     | estring
         """
         p[0] = p[1]
-
-```
-
----
-
-```py
 
     def p_identifier(self, p):
         """ identifier                : identifier_list
@@ -903,12 +513,6 @@ class LessParser(object):
             p[1] = [p[1]]
         p[0] = p[1]
 
-```
-
----
-
-```py
-
     def p_media_query_decl(self, p):
         """ media_query_decl            : css_media t_ws
                                         | css_media t_ws media_query_list
@@ -960,7 +564,7 @@ class LessParser(object):
                                         | color
                                         | expression
         """
-        if utility.is_variable(p[1]):
+        if utilities.is_variable(p[1]):
             var = self.scope.variables(''.join(p[1]))
             if var:
                 value = var.value[0]
@@ -972,12 +576,6 @@ class LessParser(object):
             p[0] = p[1].parse(self.scope)
         else:
             p[0] = p[1]
-
-```
-
----
-
-```py
 
     def p_selector(self, p):
         """ selector                  : '*'
@@ -1000,12 +598,6 @@ class LessParser(object):
         """ ident_part                : combinator vendor_property
         """
         p[0] = [p[1], p[2]]
-
-```
-
----
-
-```py
 
     def p_filter_group_aux(self, p):
         """ filter_group              : filter_group filter
@@ -1033,12 +625,6 @@ class LessParser(object):
         """
         p[0] = list(p)[1:]
 
-```
-
----
-
-```py
-
     def p_ms_filter(self, p):
         """ ms_filter       : css_ms_filter
                             | css_ms_filter t_ws
@@ -1053,12 +639,6 @@ class LessParser(object):
                             | ms_filter t_popen argument_list t_pclose
         """
         p[0] = Call(list(p)[1:], 0)
-
-```
-
----
-
-```py
 
     def p_argument_list_empty(self, p):
         """ argument_list       : empty
@@ -1089,12 +669,6 @@ class LessParser(object):
                             | fcall
         """
         p[0] = p[1]
-
-```
-
----
-
-```py
 
     def p_expression_aux(self, p):
         """ expression             : expression '+' expression
@@ -1129,23 +703,11 @@ class LessParser(object):
         """
         p[0] = p[1]
 
-```
-
----
-
-```py
-
     def p_escaped_string(self, p):
         """ estring                 : t_eopen style_list t_eclose
                                     | t_eopen identifier_list t_eclose
         """
         p[0] = p[2]
-
-```
-
----
-
-```py
 
     def p_string_part(self, p):
         """ string_part             : variable
@@ -1174,11 +736,6 @@ class LessParser(object):
         """
         p[0] = p[1]
 
-```
-
----
-
-```py
 
     def p_variable_neg(self, p):
         """ variable                : '-' variable
@@ -1228,12 +785,6 @@ class LessParser(object):
         """
         p[0] = tuple(list(p)[1:])
 
-```
-
----
-
-```py
-
     def p_class(self, p):
         """ class                     : css_class
                                       | css_class t_ws
@@ -1262,12 +813,6 @@ class LessParser(object):
         """ iclass                    : iclass_part_list
         """
         p[0] = p[1]
-
-```
-
----
-
-```py
 
     def p_id(self, p):
         """ id                        : css_id
@@ -1356,18 +901,7 @@ class LessParser(object):
         'empty                        :'
         pass
 
-
-```
-
----
-
-```py
-
     def p_error(self, t):
-        """ Internal error handler
-        args:
-            t (Lex token): Error token
-        """
         if t:
             error_msg = "E: %s line: %d, Syntax Error, token: `%s`, `%s`" % \
                       (self.target, t.lineno, t.type, t.value)
@@ -1382,40 +916,4 @@ class LessParser(object):
         return t
 
     def handle_error(self, e, line, t='E'):
-        """ Custom error handler
-        args:
-            e (Mixed): Exception or str
-            line (int): line number
-            t(str): Error type
-        """
         self.register.register("%s: line: %d: %s\n" % (t, line, e))
-
-```
-
-## Struktura Drzewiasta Projektu
-
-    .
-    ├── main
-    |   | ├── LessLexer.g4
-    |   | ├── LessLexer.tokens
-    |   | ├── LessParser.g4
-    |   | ├── LessParser.tokens
-    |   | ├── UnicodeClasses.g4
-    |   | └── UnicodeClasses.tokens
-    |   └─────.antlr
-    |             ├── LessLexer.interp
-    |             ├── LessLexer.java
-    |             └── LessLexer.tokens
-    ├── tests
-    |     ├── LessLexer.g4
-    |     └── LessParser.g4
-    ├── README.md
-    ├── lexer.py
-    └── parser.py
-
-## Technologie
-
-W projekcie zostały użyte poniższe technologie:
-
-- Python 3.9
-- ANTLR 4.7.2
