@@ -19,6 +19,7 @@
 - [Przykładowe Testy](#przykładowe-testy)
   - [Input №1](#input-1)
   - [Input №2](#input-2)
+  - [Input №3](#input-3)
 
 ## Informacje o projekcie
 
@@ -1261,7 +1262,7 @@ W katalogu `samples` są znajdują się przykładowe pliki które mają pewien `
   }
   ```
 
-- Uruchomienie konwertera podając `input` zawarty w `samples/input_1`:
+- Uruchomienie konwertera podając `input` zawarty w `samples/input_1.less`:
 
 ```bash
   python main.py samples/input_1.less
@@ -1290,7 +1291,7 @@ W katalogu `samples` są znajdują się przykładowe pliki które mają pewien `
   @a: 9%;
   ```
 
-- Uruchomienie konwertera podając `input` zawarty w `samples/input_2`:
+- Uruchomienie konwertera podając `input` zawarty w `samples/input_2.less`:
 
 ```bash
 python main.py samples/input_2.less
@@ -1301,5 +1302,50 @@ python main.py samples/input_2.less
   ```css
   .lazy-eval {
     width: 9%;
+  }
+  ```
+
+### Input №3
+
+- Zawartość pliku `samples/input_3.less`:
+
+  ```less
+  // Variables
+  @link-color: #428bca; // sea blue
+  @link-color-hover: @link-color;
+
+  // Usage
+  a,
+  .link {
+    color: @link-color;
+  }
+  a:hover {
+    color: @link-color-hover;
+  }
+  .widget {
+    color: #fff;
+    background: @link-color;
+  }
+  ```
+
+- Uruchomienie konwertera podając `input` zawarty w `samples/input_3.less`:
+
+```bash
+python main.py samples/input_3.less
+```
+
+- Oczekiwany `output`:
+
+  ```css
+  a,
+  .link {
+    color: #428bca;
+  }
+  a:hover {
+    color: #3071a9;
+  }
+  .widget {
+    color: #ffffff;
+    background: #428bca;
   }
   ```
