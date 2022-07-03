@@ -1246,7 +1246,7 @@ W katalogu `samples` są znajdują się przykładowe pliki które mają pewien `
 
 ### Input №1
 
-- Zawartość pliku `input_1.less`:
+- Zawartość pliku `samples/input_1.less`:
 
   ```less
   // Variables
@@ -1260,9 +1260,11 @@ W katalogu `samples` są znajdują się przykładowe pliki które mają pewien `
   }
   ```
 
-- ```bash
+- Uruchomienie konwertera podając `input` zawarty w `samples/input_1`:
+
+```bash
   python main.py samples/input_1.less
-  ```
+```
 
 - Oczekiwany `output`:
   ```css
