@@ -27,6 +27,7 @@
   - [Rejestrowanie Errorów](#rejestrowanie-errorów)
   - [Printowanie Errorów](#printowanie-errorów)
 - [Klasa Parsera](#klasa-parsera)
+- [Struktura Drzewiasta Projektu:](#struktura-drzewiasta-projektu)
 - [Technologie:](#technologie)
 
 ## Informacje o projekcie
@@ -1388,6 +1389,27 @@ class LessParser(object):
         self.register.register("%s: line: %d: %s\n" % (t, line, e))
 
 ```
+
+## Struktura Drzewiasta Projektu:
+
+    .
+    ├── main
+    |   | ├── LessLexer.g4
+    |   | ├── LessLexer.tokens
+    |   | ├── LessParser.g4
+    |   | ├── LessParser.tokens
+    |   | ├── UnicodeClasses.g4
+    |   | └── UnicodeClasses.tokens
+    |   └─────.antlr
+    |             ├── LessLexer.interp
+    |             ├── LessLexer.java
+    |             └── LessLexer.tokens
+    ├── tests
+    |     ├── LessLexer.g4
+    |     └── LessParser.g4
+    ├── README.md
+    ├── lexer.py
+    └── parser.py
 
 ## Technologie:
 
