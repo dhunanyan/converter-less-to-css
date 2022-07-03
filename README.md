@@ -28,7 +28,7 @@
   - [Printowanie Errorów](#printowanie-errorów)
 - [Klasa Parsera](#klasa-parsera)
 - [Struktura Drzewiasta Projektu](#struktura-drzewiasta-projektu)
-- [Technologie](#technologie)
+- [Technologie i Biblioteki](#technologie-i-biblioteki)
 - [Instrukcja Uruchomienia Projektu](#instrukcja-uruchomienia-projektu)
 
 ## Informacje o projekcie
@@ -1433,12 +1433,13 @@ class LessParser(object):
     ├── main.py
     └── README.md
 
-## Technologie
+## Technologie i Biblioteki
 
 W projekcie zostały użyte poniższe technologie:
 
 - Python 3.9
-- ANTLR 4.7.2
+- PLY (Python Lex-Yacc)
+- six 1.16.0
 
 ## Instrukcja Uruchomienia Projektu
 
