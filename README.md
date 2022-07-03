@@ -29,6 +29,7 @@
 - [Klasa Parsera](#klasa-parsera)
 - [Struktura Drzewiasta Projektu](#struktura-drzewiasta-projektu)
 - [Technologie](#technologie)
+- [Instrukcja Uruchomienia Projektu](#instrukcja-uruchomienia-projektu)
 
 ## Informacje o projekcie
 
@@ -1438,3 +1439,20 @@ W projekcie zostały użyte poniższe technologie:
 
 - Python 3.9
 - ANTLR 4.7.2
+
+## Instrukcja Uruchomienia Projektu
+
+- Instalacja potrzebnych bibliotek:
+  ```bash
+      pip install six
+  ```
+  ```bash
+      pip install ply
+  ```
+- Tworzenie pliku .less w głównym katalogu zawierającą kod LESS, który będzie skonwertowany na CSS
+  - `np: example.less`
+- W głownym katalogu, w terminalu wywołanie komendy, gdzie `example.less` to wyżej wspomniany przez użytkonwika stworzony plik:
+  ```bash
+    python main.py example.less
+  ```
+- Skonwertowany kod będzie wypisany w terminalu
