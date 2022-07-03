@@ -6,7 +6,10 @@
 - [Informacje o projekcie <a name="doc_scube"></a>](#informacje-o-projekcie-)
 - [Spis tokenów <a name="description"></a>](#spis-tokenów-)
   - [SEPARATORS](#separators)
-
+- [Gramatyka](#instructions)
+- [Technologie](#tech)
+- [Struktura projektu](#tree)
+- [Instrukcja uruchomienia projektu](#servermsg)
   1. [Graficzny interfejs użytkownika](#gui)
 
   2. [Terminal](#cl)
