@@ -5,7 +5,7 @@
 - [Spis treści](#spis-treści)
 - [Informacje o projekcie <a name="doc_scube"></a>](#informacje-o-projekcie-)
 - [Spis tokenów <a name="description"></a>](#spis-tokenów-)
-  - [SEPARATORS](#separators)
+  - [Separatory](#separators)
 - [Gramatyka](#instructions)
 - [Technologie](#tech)
 - [Struktura projektu](#tree)
@@ -43,7 +43,7 @@ Jak ma wyglądać schemat projektu:<br>
 
 ## Spis tokenów <a name="description"></a>
 
-### SEPARATORS
+### SEPARATORY
 
 ```py
 t_LPAREN = r'\('
