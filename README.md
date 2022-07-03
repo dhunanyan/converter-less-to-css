@@ -42,7 +42,7 @@ Jak ma wyglądać schemat projektu:<br>
 
 ### SEPARATORS
 
-```css
+```py
 t_LPAREN = r'\('
 t_RPAREN = r'\)'
 t_BlockStart = r'\{'
