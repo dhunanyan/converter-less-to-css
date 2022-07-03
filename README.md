@@ -1272,7 +1272,7 @@ Skonwertowany kod będzie wypisany w terminalu lub w pliku docelowym `outputu` -
 
 ## Przykładowe Testy
 
-W katalogu `samples` są znajdują się przykładowe pliki które mają pewien `input` oraz `oczekiwany output`. Zalecane jest prztestować manualnie pliki zawarte w tym katalogu, aby upewnić się, że projekt jest prawidłowy skonfigurowany.
+W katalogu `samples` znajdują się przykładowe pliki które mają pewien `input` oraz `oczekiwany output`. Zalecane jest prztestować pliki zawarte w tym katalogu, aby upewnić się, że projekt jest prawidłowy skonfigurowany.
 
 ### Input №1
 
