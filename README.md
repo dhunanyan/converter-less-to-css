@@ -18,6 +18,7 @@
 - [Instrukcja Uruchomienia Projektu](#instrukcja-uruchomienia-projektu)
 - [Przykładowe Testy](#przykładowe-testy)
   - [Input №1](#input-1)
+  - [Input №2](#input-2)
 
 ## Informacje o projekcie
 
@@ -1267,10 +1268,38 @@ W katalogu `samples` są znajdują się przykładowe pliki które mają pewien `
 ```
 
 - Oczekiwany `output`:
+
   ```css
   .banner {
     font-weight: bold;
     line-height: 40px;
     margin: 0 auto;
+  }
+  ```
+
+### Input №2
+
+- Zawartość pliku `samples/input_2.less`:
+
+  ```less
+  .lazy-eval {
+    width: @var;
+  }
+
+  @var: @a;
+  @a: 9%;
+  ```
+
+- Uruchomienie konwertera podając `input` zawarty w `samples/input_2`:
+
+```bash
+python main.py samples/input_2.less
+```
+
+- Oczekiwany `output`:
+
+  ```css
+  .lazy-eval {
+    width: 9%;
   }
   ```
