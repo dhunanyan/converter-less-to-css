@@ -21,6 +21,11 @@
   - [Input №2](#input-2)
   - [Input №3](#input-3)
   - [Input №4](#input-4)
+  - [Input №5](#input-5)
+  - [Input №6](#input-6)
+  - [Input №7](#input-7)
+  - [Input №8](#input-8)
+  - [Input №9](#input-9)
 
 ## Informacje o projekcie
 
@@ -1379,5 +1384,168 @@ python main.py samples/input_4.less
   }
   .concrete {
     font-family: Arial;
+  }
+  ```
+
+### Input №5
+
+- Zawartość pliku `samples/input_5.less`:
+
+  ```less
+  @var: 0;
+  .class {
+    @var: 1;
+    .brass {
+      @var: 2;
+      three: @var;
+      @var: 3;
+    }
+    one: @var;
+  }
+  ```
+
+- Uruchomienie konwertera podając `input` zawarty w `samples/input_5.less`:
+
+```bash
+python main.py samples/input_5.less
+```
+
+- Oczekiwany `output`:
+
+  ```css
+  .class {
+    one: 1;
+  }
+  .class .brass {
+    three: 3;
+  }
+  ```
+
+### Input №6
+
+- Zawartość pliku `samples/input_6.less`:
+
+  ```less
+  a {
+    color: blue;
+    &:hover {
+      color: green;
+    }
+  }
+  ```
+
+- Uruchomienie konwertera podając `input` zawarty w `samples/input_6.less`:
+
+```bash
+python main.py samples/input_6.less
+```
+
+- Oczekiwany `output`:
+
+  ```css
+  a {
+    color: blue;
+  }
+
+  a:hover {
+    color: green;
+  }
+  ```
+
+### Input №7
+
+- Zawartość pliku `samples/input_7.less`:
+
+  ```less
+  .header {
+    .menu {
+      border-radius: 5px;
+      .no-borderradius & {
+        background-image: url("images/button-background.png");
+      }
+    }
+  }
+  ```
+
+- Uruchomienie konwertera podając `input` zawarty w `samples/input_7.less`:
+
+```bash
+python main.py samples/input_7.less
+```
+
+- Oczekiwany `output`:
+
+  ```css
+  .header .menu {
+    border-radius: 5px;
+  }
+  .no-borderradius .header .menu {
+    background-image: url("images/button-background.png");
+  }
+  ```
+
+### Input №8
+
+- Zawartość pliku `samples/input_8.less`:
+
+  ```less
+  .my-mixin {
+    color: black;
+  }
+  .my-other-mixin() {
+    background: white;
+  }
+  .class {
+    .my-mixin();
+    .my-other-mixin();
+  }
+  ```
+
+- Uruchomienie konwertera podając `input` zawarty w `samples/input_8.less`:
+
+```bash
+python main.py samples/input_8.less
+```
+
+- Oczekiwany `output`:
+
+  ```css
+  .my-mixin {
+    color: black;
+  }
+  .class {
+    color: black;
+    background: white;
+  }
+  ```
+
+### Input №9
+
+- Zawartość pliku `samples/input_9.less`:
+
+  ```less
+  .my-mixin {
+    color: black;
+  }
+  .my-other-mixin() {
+    background: white;
+  }
+  .class {
+    .my-mixin();
+    .my-other-mixin();
+  }
+  ```
+
+- Uruchomienie konwertera podając `input` zawarty w `samples/input_9.less`:
+
+```bash
+python main.py samples/input_9.less
+```
+
+- Oczekiwany `output`:
+
+  ```css
+  button:hover {
+    border: 1px solid red;
   }
   ```
