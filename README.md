@@ -74,4 +74,3 @@ t_EQ = r'='
 t_PIPE_EQ = r'\|='
 t_TILD_EQ = r'~='
 ```css
-````
