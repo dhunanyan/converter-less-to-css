@@ -106,6 +106,11 @@ t_only
 +
 &
 ```
+
+### Zarezerwowane Nazwy Zmiennych
+
+> W języku Less.js nazwy zmiennych zaczyna się od znaku '@', natommiast w CSS są nazwy zarezerwowane takie jak '@media', "@keyframes i tym podobne, zatem trzeba zablokowaćich użycie jako nazwy.
+
 ## Klasa Errorów
 
 ### Rejestrowanie Errorów
