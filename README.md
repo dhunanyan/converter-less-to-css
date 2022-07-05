@@ -48,49 +48,49 @@
 
 ### Tokeny
 
-```
-css_comment
-css_string
-css_important
-css_vendor_hack
-css_uri
-css_ms_filter
-css_keyframe_selector
-css_media_feature
-less_comment
-less_open_format
-less_when
-less_and
-less_not
-t_ws
-t_popen
-t_pclose
-t_semicolon
-t_tilde
-t_colon
-t_comma
-t_eopen
-t_eclose
-t_isopen
-t_isclose
-t_bopen
-t_bclose
-css_class
-css_id
-css_dom
-css_property
-css_vendor_property
-css_user_property
-css_ident
-css_number
-css_color
-css_media_type
-css_filter
-less_variable
-t_and
-t_not
-t_only
-```
+|        **Nazwa / Opis / Regex**        |       **Token**       |
+|:--------------------------------------:|:---------------------:|
+| komentarz (np: \* ... */)              |           css_comment |
+| ciąg znaków                            |            css_string |
+| !important                             |         css_important |
+| hack-i CSS                             |       css_vendor_hack |
+| data('...')                            |               css_uri |
+| r'(?:progid:\|DX\.)[^;\(]*'            |         css_ms_filter |
+| 'from', 'to'                           | css_keyframe_selector |
+| media w CSS                            |     css_media_feature |
+| //                                     |          less_comment |
+| r'%\('                                 |      less_open_format |
+| 'when'                                 |             less_when |
+| 'and'                                  |              less_and |
+| 'not'                                  |              less_not |
+| r'[ \t\f\v]+'                          |                  t_ws |
+| ( - otwierający                        |               t_popen |
+| ) - zamykający                         |              t_pclose |
+| ;                                      |           t_semicolon |
+| ~                                      |               t_tilde |
+| :                                      |               t_colon |
+| ,                                      |               t_comma |
+| " - otwierający                        |               t_eopen |
+| " - zamykający                         |              t_eclose |
+| ' - otwierający                        |              t_isopen |
+| ' - zamykający                         |             t_isclose |
+| { - otwierający                        |               t_bopen |
+| } - zamykający                         |              t_bclose |
+| . - klasa w css                        |             css_class |
+| # - id                                 |                css_id |
+| tagi html                              |               css_dom |
+| atrybuty CSS                           |          css_property |
+| prefiksowe atrybuty CSS                |   css_vendor_property |
+| atrybuty własne czyli zawierające '--' |     css_user_property |
+| identyfikator CSS                      |             css_ident |
+| jednostki CSS                          |            css_number |
+| kolory (stringi) CSS                   |             css_color |
+| typy media (np: @media)                |        css_media_type |
+| typy filtrowania (np: używanie 'not')  |            css_filter |
+| zmienne Less.js                        |         less_variable |
+|                                        |                 t_and |
+|                                        |                 t_not |
+|                                        |                t_only |
 
 ### Literały
 
