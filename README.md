@@ -60,6 +60,7 @@
 ---
 
 |        **Nazwa / Opis / Regex**        |       **Token**       |
+|:--------------------------------------:|:---------------------:|
 | . - klasa w css                        |             css_class |
 | # - id                                 |                css_id |
 | tagi html                              |               css_dom |
@@ -83,6 +84,7 @@
 ---
 
 |        **Nazwa / Opis / Regex**        |       **Token**       |
+|:--------------------------------------:|:---------------------:|
 | r'[ \t\f\v]+'                          |                  t_ws |
 | ( - otwierający                        |               t_popen |
 | ) - zamykający                         |              t_pclose |
