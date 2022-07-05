@@ -56,6 +56,10 @@
 | 'when'                                 |             less_when |
 | 'and'                                  |              less_and |
 | 'not'                                  |              less_not |
+
+---
+
+|        **Nazwa / Opis / Regex**        |       **Token**       |
 | . - klasa w css                        |             css_class |
 | # - id                                 |                css_id |
 | tagi html                              |               css_dom |
@@ -75,6 +79,10 @@
 | r'(?:progid:\|DX\.)[^;\(]\*'           |         css_ms_filter |
 | 'from', 'to'                           | css_keyframe_selector |
 | media w CSS                            |     css_media_feature |
+
+---
+
+|        **Nazwa / Opis / Regex**        |       **Token**       |
 | r'[ \t\f\v]+'                          |                  t_ws |
 | ( - otwierający                        |               t_popen |
 | ) - zamykający                         |              t_pclose |
