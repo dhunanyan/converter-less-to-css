@@ -112,7 +112,7 @@ t_only
 > W języku Less.js nazwy zmiennych zaczynają się od znaku ``@``, natommiast w CSS są nazwy zarezerwowane takie jak ``@media``, ``@keyframes`` i tym podobne, zatem trzeba zablokowaćich użycie jako nazwy. Poniżej jest przedstawiona lista zarezerwowanych tokenów.
 
 ```js
-tokens = {
+RESERVED_TOKENS = {
     '@media': 'css_media',
     '@page': 'css_page',
     '@import': 'css_import',
