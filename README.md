@@ -47,7 +47,7 @@
 ## Spis tokenów
 
 ### Tokeny
-<p align="center"> 
+
 |        **Nazwa / Opis / Regex**        |       **Token**       |
 |:--------------------------------------:|:---------------------:|
 | komentarz (np: \* ... */)              |           css_comment |
@@ -91,7 +91,7 @@
 |                                        |                 t_and |
 |                                        |                 t_not |
 |                                        |                t_only |
-</h1>
+
 ### Literały
 
 ```
