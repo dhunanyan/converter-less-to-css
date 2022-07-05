@@ -50,19 +50,31 @@
 
 |        **Nazwa / Opis / Regex**        |       **Token**       |
 |:--------------------------------------:|:---------------------:|
-| komentarz (np: \* ... */)              |           css_comment |
-| ciąg znaków                            |            css_string |
-| !important                             |         css_important |
-| hack-i CSS                             |       css_vendor_hack |
-| data('...')                            |               css_uri |
-| r'(?:progid:\|DX\.)[^;\(]*'            |         css_ms_filter |
-| 'from', 'to'                           | css_keyframe_selector |
-| media w CSS                            |     css_media_feature |
+| zmienne Less.js                        |         less_variable |
 | //                                     |          less_comment |
 | r'%\('                                 |      less_open_format |
 | 'when'                                 |             less_when |
 | 'and'                                  |              less_and |
 | 'not'                                  |              less_not |
+| . - klasa w css                        |             css_class |
+| # - id                                 |                css_id |
+| tagi html                              |               css_dom |
+| atrybuty CSS                           |          css_property |
+| prefiksowe atrybuty CSS                |   css_vendor_property |
+| atrybuty własne czyli zawierające '--' |     css_user_property |
+| identyfikator CSS                      |             css_ident |
+| jednostki CSS                          |            css_number |
+| kolory (stringi) CSS                   |             css_color |
+| typy media (np: @media)                |        css_media_type |
+| typy filtrowania (np: używanie 'not')  |            css_filter |
+| komentarz (np: \* ... \*/)             |           css_comment |
+| ciąg znaków                            |            css_string |
+| !important                             |         css_important |
+| hack-i CSS                             |       css_vendor_hack |
+| data('...')                            |               css_uri |
+| r'(?:progid:\|DX\.)[^;\(]\*'           |         css_ms_filter |
+| 'from', 'to'                           | css_keyframe_selector |
+| media w CSS                            |     css_media_feature |
 | r'[ \t\f\v]+'                          |                  t_ws |
 | ( - otwierający                        |               t_popen |
 | ) - zamykający                         |              t_pclose |
@@ -76,18 +88,6 @@
 | ' - zamykający                         |             t_isclose |
 | { - otwierający                        |               t_bopen |
 | } - zamykający                         |              t_bclose |
-| . - klasa w css                        |             css_class |
-| # - id                                 |                css_id |
-| tagi html                              |               css_dom |
-| atrybuty CSS                           |          css_property |
-| prefiksowe atrybuty CSS                |   css_vendor_property |
-| atrybuty własne czyli zawierające '--' |     css_user_property |
-| identyfikator CSS                      |             css_ident |
-| jednostki CSS                          |            css_number |
-| kolory (stringi) CSS                   |             css_color |
-| typy media (np: @media)                |        css_media_type |
-| typy filtrowania (np: używanie 'not')  |            css_filter |
-| zmienne Less.js                        |         less_variable |
 |                                        |                 t_and |
 |                                        |                 t_not |
 |                                        |                t_only |
