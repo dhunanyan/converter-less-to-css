@@ -58,6 +58,9 @@
 | 'when'                                 |             less_when |
 | 'and'                                  |              less_and |
 | 'not'                                  |              less_not |
+
+---
+
 #### CSS
 
 |        **Nazwa / Opis / Regex**        |       **Token**       |
@@ -82,6 +85,8 @@
 | 'from', 'to'                           | css_keyframe_selector |
 | media w CSS                            |     css_media_feature |
 
+---
+
 #### Media Query
 
 |        **Nazwa / Opis / Regex**        |       **Token**       |
@@ -103,9 +108,13 @@
 | not - ale w media query                |                 t_not |
 | only - ale w media query               |                t_only |
 
+---
+
 ### Literały
 
 ``<``, ``>``, ``=``, ``%``, ``!``, ``/``, ``*``, ``-``, ``+``, ``&``
+
+---
 
 ### Zarezerwowane Nazwy Zmiennych
 
