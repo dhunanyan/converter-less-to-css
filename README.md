@@ -48,6 +48,8 @@
 
 ### Tokeny
 
+#### Less
+
 |        **Nazwa / Opis / Regex**        |       **Token**       |
 |:--------------------------------------:|:---------------------:|
 | zmienne Less.js                        |         less_variable |
@@ -57,7 +59,7 @@
 | 'and'                                  |              less_and |
 | 'not'                                  |              less_not |
 
----
+#### CSS
 
 |        **Nazwa / Opis / Regex**        |       **Token**       |
 |:--------------------------------------:|:---------------------:|
@@ -81,7 +83,7 @@
 | 'from', 'to'                           | css_keyframe_selector |
 | media w CSS                            |     css_media_feature |
 
----
+#### Media Query
 
 |        **Nazwa / Opis / Regex**        |       **Token**       |
 |:--------------------------------------:|:---------------------:|
@@ -98,9 +100,9 @@
 | ' - zamykający                         |             t_isclose |
 | { - otwierający                        |               t_bopen |
 | } - zamykający                         |              t_bclose |
-|                                        |                 t_and |
-|                                        |                 t_not |
-|                                        |                t_only |
+| and - ale w media query                |                 t_and |
+| not - ale w media query                |                 t_not |
+| only - ale w media query               |                t_only |
 
 ### Literały
 
