@@ -49,7 +49,7 @@
 ### Tokeny
 
 #### Less
-
+<center>
 |        **Nazwa / Opis / Regex**        |       **Token**       |
 |:--------------------------------------:|:---------------------:|
 | zmienne Less.js                        |         less_variable |
@@ -58,7 +58,7 @@
 | 'when'                                 |             less_when |
 | 'and'                                  |              less_and |
 | 'not'                                  |              less_not |
-
+</center>
 #### CSS
 
 |        **Nazwa / Opis / Regex**        |       **Token**       |
